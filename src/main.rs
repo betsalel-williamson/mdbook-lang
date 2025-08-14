@@ -12,6 +12,7 @@ mod go;
 mod javascript;
 mod typescript;
 mod scheme;
+mod pkl;
 
 pub use common::{prepare, exe_command, Code};
 pub use cpp::{build_cpp, build_c};
@@ -21,6 +22,7 @@ pub use go::build_go;
 pub use scheme::build_scheme;
 pub use javascript::build_javascript;
 pub use typescript::build_typescript;
+pub use pkl::build_pkl;
 
 fn main(){
     let cli = cli::Cli::new();

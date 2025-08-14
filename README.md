@@ -9,7 +9,7 @@
 ___
 A playground mdbook preprocessor and compiler server for multiple programming languages inspired by [Rust rlayground](https://rust-lang.github.io/mdBook/format/mdbook.html#rust-playground), which supports only Rust programming language.
 
-Version 0.1.0 supports c/c++, go, python, java, javascript, typescript, scheme in build-in manner on Unix like os, such as Linux/MacOS/FreeBSD etc., while windows is supported from version 0.1.1.
+Version 0.1.0 supports c/c++, go, python, java, javascript, typescript, scheme, pkl, in build-in manner on Unix like os, such as Linux/MacOS/FreeBSD etc., while windows is supported from version 0.1.1.
 
 ## platform support 
 | Version | OS | Arch |
@@ -44,6 +44,7 @@ You should install the corresponding compiler(s) to use the playground for your 
 - node.js for javascript and typescript
 - tsc for typescript
 - gambit-scheme for scheme/lisp(`gsi` binary should be in the `PATH` env.)
+- pkl for Pkl
 
 ---
 
@@ -87,6 +88,7 @@ go-enable = true
 python-enable = true
 javascript-enable = true
 typescript-enable = true
+pkl-enable = true
 scheme-enable = true
 editable = true
 disable-devtool-auto = false
@@ -249,6 +251,9 @@ private-bin scheme-r5rs
 
 # allow c/c++ output executable
 private-bin output.exe
+
+# allow pkl tools chain
+private-bin pkl
 
 # must be canceled for java/javac
 # private-lib

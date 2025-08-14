@@ -30,3 +30,7 @@ curl -X POST http://127.0.0.1:3333/api/v1/build-code\
     -H "Content-Type: application/json" \
     -d '{"lang":"typescript","code_block":"console.log(\"Hello TypeScript\");"}'
 
+#pkl language
+curl -X POST http://127.0.0.1:3333/api/v1/build-code\
+    -H "Content-Type: application/json" \
+    -d '{"lang":"pkl","code_block":"key = \"Hello pkl!\""}'

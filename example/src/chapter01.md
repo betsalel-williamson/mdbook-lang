@@ -96,3 +96,9 @@ func main() {
                 regions))))
 (greet-world)
 ```
+
+pkl
+```pkl
+// This is an example of a Pkl code block.
+key = "value"
+```

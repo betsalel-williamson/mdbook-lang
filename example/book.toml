@@ -17,6 +17,7 @@ python-enable = true
 javascript-enable = true
 typescript-enable = true
 scheme-enable = true
+pkl-enable = true
 editable = true
 disable-devtool-auto = false
 disable-menu = false

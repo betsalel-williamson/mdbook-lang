@@ -30,6 +30,7 @@ use crate::build_python;
 use crate::build_javascript;
 use crate::build_typescript;
 use crate::build_scheme;
+use crate::build_pkl;
 
 const LANG_HTML: &[u8] = include_bytes!("assets/lang.html");
 const LANG_JS: &[u8] = include_bytes!("assets/lang.js");
@@ -80,6 +81,7 @@ fn map_lang(raw_lang: &str) -> &str {
         "java" => "java",
         "cpp" | "c++" | "c" => "cpp",
         "go" => "go",
+        "pkl" => "pkl",
         // _ => "cpp",
         _ => raw_lang
     }
@@ -87,7 +89,7 @@ fn map_lang(raw_lang: &str) -> &str {
 
 fn render_langs(content: &str, config: &Config) -> (bool, String) {
     // \r? is for windows line endings
-    let langs = r"\blisp\b|\bscheme\b|\bcpp\b|\bc++\b|\bc\b|\bjava\b|\bpy\b|\bpython\b|\bts\b|\btypescript\b|\bjs\b|\bjavascript\b|\bgo\b";
+    let langs = r"\blisp\b|\bscheme\b|\bcpp\b|\bc++\b|\bc\b|\bjava\b|\bpy\b|\bpython\b|\bts\b|\btypescript\b|\bjs\b|\bjavascript\b|\bgo\b|\bpkl\b";
     let re: Regex = Regex::new(&format!(r"(?s)```({}),?(.*?)\r?\n(.*?)```", langs)).unwrap();
 
     // if there are no matches, return the content as is
@@ -410,6 +412,7 @@ fn add_preprocessor(doc: &mut DocumentMut) {
     item["javascript-enable"] = value(true);
     item["typescript-enable"] = value(true);
     item["scheme-enable"] = value(true);
+    item["pkl-enable"] = value(true);
     // rendered code block i.e. ace editor is editable or not
     item["editable"] = value(true);
     // disable item or not
@@ -635,6 +638,7 @@ pub async fn build_code(Json(code): Json<Code>) -> String {
         "javascript" => build_javascript(code.code_block, sandbox_args_vec),
         "typescript" => build_typescript(code.code_block, sandbox_args_vec),
         "scheme" => build_scheme(code.code_block, sandbox_args_vec),
+        "pkl" => build_pkl(code.code_block, sandbox_args_vec),
         _ => build_cpp(code.code_block, sandbox_args_vec),
     };
     use serde_json::json;
